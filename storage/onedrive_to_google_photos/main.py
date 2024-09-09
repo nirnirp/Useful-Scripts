@@ -47,6 +47,7 @@ SCOPES_GOOGLE = [
 TRANSFERS_FOLDER = 'transfers'
 
 
+
 def load_cache():
     cache = SerializableTokenCache()
     if os.path.exists(TOKEN_FILE_ONEDRIVE):
@@ -122,17 +123,12 @@ def list_files_from_onedrive(folder_path, onedrive_token):
 def authenticate_google_photos():
     print("Authenticating to Google Photos...")
 
-    # Define the required scopes
-    SCOPES = [
-        'https://www.googleapis.com/auth/photoslibrary.readonly',
-        'https://www.googleapis.com/auth/photoslibrary.appendonly',
-    ]
     creds = None
 
     # Load token.json if it exists to load previously stored credentials
     if os.path.exists(TOKEN_PICKLE_GOOGLE):
         try:
-            creds = Credentials.from_authorized_user_file(TOKEN_PICKLE_GOOGLE, SCOPES)
+            creds = Credentials.from_authorized_user_file(TOKEN_PICKLE_GOOGLE, SCOPES_GOOGLE)
             print(f"Loaded credentials from {TOKEN_PICKLE_GOOGLE}.")
         except Exception as e:
             print(f"Error loading credentials from {TOKEN_PICKLE_GOOGLE}: {e}")
@@ -150,7 +146,7 @@ def authenticate_google_photos():
         else:
             try:
                 print("No valid credentials found. Starting OAuth flow...")
-                flow = InstalledAppFlow.from_client_secrets_file(CREDENTIALS_FILE_GOOGLE, SCOPES)
+                flow = InstalledAppFlow.from_client_secrets_file(CREDENTIALS_FILE_GOOGLE, SCOPES_GOOGLE)
                 creds = flow.run_local_server(port=8080)
                 print("OAuth flow completed successfully.")
             except Exception as e:
