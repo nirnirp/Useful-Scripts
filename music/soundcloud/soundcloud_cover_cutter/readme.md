@@ -4,7 +4,8 @@
 Important: download and crop the exact banner file from that URL (the one you measured), not your original upload.
 
 Use the crop script with the values from the measurer to export a square and a circular PNG.  (the values are already there)
-Usage: python crop_soundcloud_avatar.py path/to/banner.jpg
+
+> Usage: python crop_soundcloud_avatar.py path/to/banner.jpg
 
 Upload the avatar to SoundCloud. It should align perfectly at the same desktop width you measured.
 
