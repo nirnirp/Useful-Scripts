@@ -19,13 +19,10 @@ window.fetch = async (...args) => {
   return origFetch(...args);
 };
 
-# then local GLB -> OBJ/STL
+# then GLB -> OBJ/STL service 
 # ---------------------------------------------------------------------------
 
-brew install assimp
-assimp export model.glb model.obj
-assimp export model.glb model.stl
-
+https://imagetostl.com/convert/file/glb/to/stl
 
 # Single download and GLB to OBJ converter script - just paste in console before loading, then click on model and download automatically
 # ---------------------------------------------------------------------------
